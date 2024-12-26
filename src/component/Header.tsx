@@ -17,9 +17,9 @@ const Navigation: React.FC<HeaderProps> = ({ onScroll }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navigation = [
-    { name: "Portfolio", href: "#portfolio" },
-    { name: "Über uns", href: "#uber" },
-    { name: "Partner werden", href: "#partner" },
+    { name: "Portfolio", href: "portfolio" },
+    { name: "Über uns", href: "uber" },
+    { name: "Partner werden", href: "partner" },
   ];
 
   return (
@@ -29,7 +29,6 @@ const Navigation: React.FC<HeaderProps> = ({ onScroll }) => {
           <Link to="/" className="flex items-center">
             <Logo />
           </Link>
-
 
           <div className="flex gap-3">
             <div className="flex lg:hidden">
@@ -49,13 +48,16 @@ const Navigation: React.FC<HeaderProps> = ({ onScroll }) => {
               <ul className="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
                 {navigation.map((item) => (
                   <li key={item.name}>
-                    <Link
-                      to={item.href}
-                      onClick={() => onScroll(item.href.replace("#", ""))}
+                    <a
+                      href={`#${item.href}`}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        onScroll(item.href);
+                      }}
                       className="block py-2 pr-4 pl-3 duration-200 text-[#111111] border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 hover:text-[#FB0201] lg:p-0"
                     >
                       {item.name}
-                    </Link>
+                    </a>
                   </li>
                 ))}
               </ul>
@@ -69,7 +71,6 @@ const Navigation: React.FC<HeaderProps> = ({ onScroll }) => {
                 </Link>
               ))}
             </div>
-
           </div>
 
           <Dialog
@@ -80,9 +81,9 @@ const Navigation: React.FC<HeaderProps> = ({ onScroll }) => {
             <div className="fixed inset-0 z-50" />
             <DialogPanel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
               <div className="flex items-center justify-between">
-                <a href="#" className="-m-1.5 p-1.5">
+                <Link to="/" className="-m-1.5 p-1.5">
                   <Logo />
-                </a>
+                </Link>
                 <button
                   type="button"
                   onClick={() => setMobileMenuOpen(false)}
@@ -98,7 +99,12 @@ const Navigation: React.FC<HeaderProps> = ({ onScroll }) => {
                     {navigation.map((item) => (
                       <a
                         key={item.name}
-                        href={item.href}
+                        href={`#${item.href}`}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          onScroll(item.href);
+                          setMobileMenuOpen(false);
+                        }}
                         className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-[#111111] hover:bg-gray-50"
                       >
                         {item.name}
