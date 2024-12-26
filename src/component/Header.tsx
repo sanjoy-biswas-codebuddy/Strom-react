@@ -63,7 +63,7 @@ const Navigation: React.FC<HeaderProps> = ({ onScroll }) => {
             <div className="order-last">
               {buttonConfigs.map((btn, index) => (
                 <Link to="/SignIn" key={index}>
-                  <Button color={btn.color} className="mr-0">
+                  <Button color={btn.color} className="mr-0" >
                     {btn.label}
                   </Button>
                 </Link>

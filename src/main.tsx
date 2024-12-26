@@ -7,6 +7,7 @@ import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } 
 import Impressum from './pages/Impressum/impressum.tsx'
 import Daten from './pages/Daten/Daten.tsx'
 import SignIn from './component/Auth/Signin.tsx'
+import Dashboard from './pages/Dashboard.tsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -15,6 +16,7 @@ const router = createBrowserRouter(
       <Route path='/impressum' element={<Impressum />} />
       <Route path='/daten' element={<Daten />} />
       <Route path='/SignIn' element={<SignIn />} />
+      <Route path='/dashboard' element={<Dashboard />} />
     </Route>
   )
 )
