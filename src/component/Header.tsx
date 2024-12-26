@@ -5,11 +5,7 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import Logo from "./Logo";
 import Button from "./shared/Button";
 
-interface HeaderProps {
-  onScroll: (id: string) => void;
-}
-
-const Navigation: React.FC<HeaderProps> = ({ onScroll }) => {
+const Navigation: React.FC = () => {
   const buttonConfigs = [
     { color: "primary" as const, label: "Sign Up" },
   ];
@@ -22,11 +18,32 @@ const Navigation: React.FC<HeaderProps> = ({ onScroll }) => {
     { name: "Partner werden", href: "partner" },
   ];
 
+  const handleScroll = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.scrollY - 100;
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
+    }
+  };
+
   return (
     <header className="sticky z-50 top-0">
       <nav className="bg-white px-4 lg:px-6 py-5">
         <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
-          <Link to="/" className="flex items-center">
+          <Link
+            to="/"
+            onClick={() => {
+              window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+              });
+            }}
+            className="flex items-center"
+          >
             <Logo />
           </Link>
 
@@ -48,16 +65,18 @@ const Navigation: React.FC<HeaderProps> = ({ onScroll }) => {
               <ul className="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
                 {navigation.map((item) => (
                   <li key={item.name}>
-                    <a
-                      href={`#${item.href}`}
+                    <Link
+                      key={item.name}
+                      to={`#${item.href}`}
                       onClick={(e) => {
                         e.preventDefault();
-                        onScroll(item.href);
+                        handleScroll(item.href);
+                        setMobileMenuOpen(false);
                       }}
-                      className="block py-2 pr-4 pl-3 duration-200 text-[#111111] border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 hover:text-[#FB0201] lg:p-0"
+                      className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-[#111111] hover:bg-gray-50"
                     >
                       {item.name}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -97,18 +116,18 @@ const Navigation: React.FC<HeaderProps> = ({ onScroll }) => {
                 <div className="-my-6 divide-y divide-gray-500/10">
                   <div className="space-y-2 py-6">
                     {navigation.map((item) => (
-                      <a
+                      <Link
                         key={item.name}
-                        href={`#${item.href}`}
+                        to={`#${item.href}`}
                         onClick={(e) => {
                           e.preventDefault();
-                          onScroll(item.href);
+                          handleScroll(item.href);
                           setMobileMenuOpen(false);
                         }}
                         className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-[#111111] hover:bg-gray-50"
                       >
                         {item.name}
-                      </a>
+                      </Link>
                     ))}
                   </div>
                 </div>

@@ -5,16 +5,9 @@ import Footer from "./component/Footer";
 import { Outlet } from "react-router-dom";
 
 const App: React.FC = () => {
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-  };
-
   return (
     <>
-      <Header onScroll={scrollToSection} />
+      <Header />
       <div className="relative z-10">
         <Outlet />
       </div>

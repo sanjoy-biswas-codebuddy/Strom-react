@@ -15,6 +15,7 @@ const impContent: ImpContent = {
 };
 
 const Impressum: React.FC = () => {
+
   return (
     <div className="py-10 px-4">
       <div className="mx-auto max-w-screen-xl">
@@ -27,6 +28,7 @@ const Impressum: React.FC = () => {
           className="mb-10 font-poppins text-[16px] leading-normal font-normal"
           paragraph={impContent.impParagraph}
         />
+
       </div>
     </div>
   );
