@@ -2,6 +2,7 @@ import React from "react";
 import Button from "./shared/Button";
 import background from "../assets/hero-bg.png";
 import TextSection from "./TextSection";
+import { Link } from "react-router-dom";
 
 const Hero: React.FC = () => {
   const buttonConfigs = [
@@ -23,9 +24,11 @@ const Hero: React.FC = () => {
             />
 
             {buttonConfigs.map((btn, index) => (
-              <Button key={index} color={btn.color}>
-                {btn.label}
-              </Button>
+              <Link to="/contact" key={index}>
+                <Button color={btn.color}>
+                  {btn.label}
+                </Button>
+              </Link>
             ))}
           </div>
         </div>

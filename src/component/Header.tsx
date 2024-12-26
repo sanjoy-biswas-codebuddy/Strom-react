@@ -3,12 +3,17 @@ import { Link } from "react-router-dom";
 import { Dialog, DialogPanel } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import Logo from "./Logo";
+import Button from "./shared/Button";
 
 interface HeaderProps {
   onScroll: (id: string) => void;
 }
 
 const Navigation: React.FC<HeaderProps> = ({ onScroll }) => {
+  const buttonConfigs = [
+    { color: "primary" as const, label: "Sign Up" },
+  ];
+
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navigation = [
@@ -24,34 +29,47 @@ const Navigation: React.FC<HeaderProps> = ({ onScroll }) => {
           <Link to="/" className="flex items-center">
             <Logo />
           </Link>
-          <div className="flex lg:hidden">
-            <button
-              type="button"
-              onClick={() => setMobileMenuOpen(true)}
-              className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
-            >
-              <span className="sr-only">Open main menu</span>
-              <Bars3Icon aria-hidden="true" className="size-6" />
-            </button>
-          </div>
 
-          <div
-            className="hidden justify-between items-center w-full lg:flex lg:w-auto lg:order-1"
-            id="mobile-menu-2"
-          >
-            <ul className="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
-              {navigation.map((item) => (
-                <li key={item.name}>
-                  <a
-                    href={item.href}
-                    onClick={() => onScroll(item.href.replace("#", ""))}
-                    className="block py-2 pr-4 pl-3 duration-200 text-[#111111] border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 hover:text-[#FB0201] lg:p-0"
-                  >
-                    {item.name}
-                  </a>
-                </li>
+
+          <div className="flex gap-3">
+            <div className="flex lg:hidden">
+              <button
+                type="button"
+                onClick={() => setMobileMenuOpen(true)}
+                className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
+              >
+                <span className="sr-only">Open main menu</span>
+                <Bars3Icon aria-hidden="true" className="size-6" />
+              </button>
+            </div>
+            <div
+              className="hidden justify-between items-center w-full lg:flex lg:w-auto"
+              id="mobile-menu-2"
+            >
+              <ul className="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
+                {navigation.map((item) => (
+                  <li key={item.name}>
+                    <Link
+                      to={item.href}
+                      onClick={() => onScroll(item.href.replace("#", ""))}
+                      className="block py-2 pr-4 pl-3 duration-200 text-[#111111] border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 hover:text-[#FB0201] lg:p-0"
+                    >
+                      {item.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="order-last">
+              {buttonConfigs.map((btn, index) => (
+                <Link to="/SignIn" key={index}>
+                  <Button color={btn.color} className="mr-0">
+                    {btn.label}
+                  </Button>
+                </Link>
               ))}
-            </ul>
+            </div>
+
           </div>
 
           <Dialog

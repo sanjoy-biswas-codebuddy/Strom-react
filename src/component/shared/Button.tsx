@@ -9,6 +9,7 @@ interface ButtonProps {
   type?: "button" | "submit" | "reset";
   isActive?: boolean;
   className?: string;
+  disabled?: boolean;
 }
 
 const button = tv({
@@ -33,10 +34,11 @@ const button = tv({
 const Button: React.FC<ButtonProps> = ({
   color = "primary",
   children,
-  onClick = () => {},
+  onClick = () => { },
   ariaLabel,
   type = "button",
   className = "",
+  disabled,
 }) => {
   const buttonClasses = button({
     color: color,
@@ -48,6 +50,7 @@ const Button: React.FC<ButtonProps> = ({
       className={`${buttonClasses} ${className}`}
       aria-label={ariaLabel}
       type={type}
+      disabled={disabled}
     >
       {children}
     </button>
