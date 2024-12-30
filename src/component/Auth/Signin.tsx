@@ -43,7 +43,7 @@ const ContactForm = () => {
         <div className='py-5 max-w-screen-xl mx-auto'>
             <h1 className='text-center text-[40px]'>Sign Up</h1>
             <div className="max-w-md mx-auto p-6 bg-white rounded-lg shadow-md">
-                <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
+                <form className="space-y-4 " onSubmit={handleSubmit(onSubmit)}>
                     <div>
                         <InputField
                             label="First Name"
