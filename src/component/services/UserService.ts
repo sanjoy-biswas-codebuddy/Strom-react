@@ -11,7 +11,4 @@ export class UserServices {
         return this.users;
     }
 
-    // public static addUser(user: IUser): void {
-    //     this.users.push(user);
-    // }
 }

@@ -6,7 +6,10 @@ import Logo from "./Logo";
 import Button from "./shared/Button";
 
 const Navigation: React.FC = () => {
-  const buttonConfigs = [
+  const buttonLogIn = [
+    { color: "orangeBordered" as const, label: "Log in" },
+  ];
+  const buttonSignIn = [
     { color: "primary" as const, label: "Sign Up" },
   ];
 
@@ -82,7 +85,14 @@ const Navigation: React.FC = () => {
               </ul>
             </div>
             <div className="order-last">
-              {buttonConfigs.map((btn, index) => (
+              {buttonLogIn.map((btn, index) => (
+                <Link to="/Login" key={index}>
+                  <Button color={btn.color} className="mr-0" >
+                    {btn.label}
+                  </Button>
+                </Link>
+              ))}
+              {buttonSignIn.map((btn, index) => (
                 <Link to="/SignIn" key={index}>
                   <Button color={btn.color} className="mr-0" >
                     {btn.label}

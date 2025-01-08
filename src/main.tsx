@@ -8,7 +8,14 @@ import Impressum from './pages/Impressum/impressum.tsx'
 import Daten from './pages/Daten/Daten.tsx'
 import SignIn from './component/Auth/Signin.tsx'
 import Dashboard from './pages/Dashboard.tsx'
+import UserDetails from './component/UserDetails.tsx'
+import Login from './component/Auth/Login.tsx'
+import Workspaces from './component/Workspaces.tsx'
+import TaskList from './component/TaskList.tsx'
+import MemberList from './component/MemberList.tsx'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
+const queryClient = new QueryClient()
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -16,15 +23,27 @@ const router = createBrowserRouter(
       <Route path='' element={<Home />} />
       <Route path='/impressum' element={<Impressum />} />
       <Route path='/daten' element={<Daten />} />
-      <Route path='/SignIn' element={<SignIn />} />
+      <Route path='/signIn' element={<SignIn />} />
+      <Route path='/login' element={<Login />} />
       <Route path='/dashboard' element={<Dashboard />} />
+      <Route path='/dashboard/:id' element={<UserDetails />} />
+      <Route path='/Workspaces' element={<Workspaces />} />
+      <Route path='/TaskList' element={<TaskList />} />
+      <Route path='/MemberList' element={<MemberList />} />
     </Route>
   )
 )
 
+// ReactDOM.createRoot(document.getElementById('root')!).render(
+//   <React.StrictMode>
+//     <RouterProvider router={router} />
+//   </React.StrictMode>
+// )
+
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+    </QueryClientProvider>
   </React.StrictMode>
 )
-

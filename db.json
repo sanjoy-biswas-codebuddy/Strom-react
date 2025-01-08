@@ -1,1 +1,74 @@
-{}
+{
+  "users": [
+    {
+      "id": "1",
+      "name": "Bhola",
+      "email": "rahim@example.com",
+      "password": "password123",
+      "role": "admin"
+    },
+    {
+      "id": "2",
+      "name": "Kanhai",
+      "email": "karim@example.com",
+      "password": "password456",
+      "role": "member"
+    }
+  ],
+  "workspaces": [
+    {
+      "id": "1",
+      "name": "Frontend Team",
+      "description": "Workspace for the dev team",
+      "members": [
+        1,
+        2
+      ]
+    },
+    {
+      "id": "2",
+      "name": "Marketing Team",
+      "description": "Workspace for marketing strategies",
+      "members": [
+        2
+      ]
+    },
+    {
+      "id": "e803",
+      "name": "Designer Team",
+      "description": "Workspace for Designe strategies"
+    },
+    {
+      "id": "f5c7",
+      "name": "Wordpress Developer",
+      "description": "Create a INT website with wordpress "
+    }
+  ],
+  "tasks": [
+    {
+      "id": "1",
+      "title": "Build Login Page",
+      "description": "Create the login page for the app",
+      "status": "completed",
+      "assigneeId": 1,
+      "workspaceId": 1
+    },
+    {
+      "id": "2",
+      "title": "SEO Audit",
+      "description": "Perform an SEO audit for the main website",
+      "status": "completed",
+      "assigneeId": 2,
+      "workspaceId": 2
+    }
+  ],
+  "logs": [
+    {
+      "id": "1",
+      "workspaceId": 1,
+      "userId": 1,
+      "action": "Created Task: Build Login Page",
+      "timestamp": "2025-01-01T12:00:00Z"
+    }
+  ]
+}
